@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-color: rgb(237, 161, 208);
+}
+.loading-text {
+    position: absolute;
+    color: #fff;
+    font-size: 3em;
+    font-weight: bold;
+    top: 40vh;
+    width: 100%;
+    text-align: center;
+}

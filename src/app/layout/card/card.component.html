@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [class.linked]="!!link" [routerLink]="link">
     <span class="card-image"><ng-content select="[image]"></ng-content></span>
     <p class="card-title">
         <ng-content select="[title]"></ng-content>
