@@ -29,7 +29,12 @@ export class AzListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        console.log(window);
         this.routeSubs.unsubscribe();
+    }
+
+    setScrollPos(e: any) {
+//
     }
 
 }

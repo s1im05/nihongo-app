@@ -13,7 +13,7 @@ export class AzLiteralComponent implements OnInit, OnDestroy {
 
     azList: Az = az;
     type: string;
-    literal: string;
+    literal: AzLiteral;
     private routeSubs: Subscription;
 
     constructor(public route: ActivatedRoute, public router: Router) {
@@ -23,7 +23,14 @@ export class AzLiteralComponent implements OnInit, OnDestroy {
         this.routeSubs = this.route.params.subscribe(params => {
             if (azType.indexOf(params.type) !== -1) {
                 this.type = params.type;
-                this.literal = params.literal;
+                this.azList.forEach((row: AzRow) => {
+                    const found = row.literals.find(f => {
+                        return f.rus === params.literal;
+                    });
+                    if (found) {
+                        this.literal = found;
+                    }
+                });
             } else {
                 this.router.navigate(['/']);
             }

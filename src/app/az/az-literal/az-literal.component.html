@@ -2,6 +2,12 @@
     <app-nav></app-nav>
 
     <ng-container body>
-        {{literal}}
+        <div class="literal">
+            <div class="literal-rus">
+                {{literal.rus}}
+            </div>
+            {{literal[type]}}
+        </div>
+
     </ng-container>
 </app-layout>
