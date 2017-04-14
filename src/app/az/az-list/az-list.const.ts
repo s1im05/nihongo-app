@@ -92,7 +92,7 @@ export const az: Az = [
         row: 'в-',
         literals: [
             {hiragana: 'わ', katakana: 'ワ', rus: 'ва'},
-            {hiragana: 'を', katakana: 'ヲ', rus: 'о'},
+            {hiragana: 'を', katakana: 'ヲ', rus: '(в)о'},
         ]
     },
     {

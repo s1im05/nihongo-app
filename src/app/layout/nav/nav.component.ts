@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, UrlSegment} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
 
 @Component({
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Rx';
 export class NavComponent implements OnInit, OnDestroy {
 
     title: string;
-    showBack = false;
+    backLink: string[];
     private routeSubs: Subscription;
 
     constructor(public route: ActivatedRoute) {
@@ -18,13 +18,28 @@ export class NavComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSubs = this.route.url.subscribe(url => {
-            this.showBack = url.length > 2;
+            this.setBackLink(this.route.component['name'], url);
             this.setTitle(url);
         });
     }
 
     ngOnDestroy() {
         this.routeSubs.unsubscribe();
+    }
+
+    setBackLink(componentName: string, url: UrlSegment[]) {
+        switch (componentName) {
+            case 'AzListComponent':
+                this.backLink = ['..'];
+                break;
+            case 'AzLiteralComponent':
+                const type = url[1].path;
+
+                this.backLink = [`/az/${type}/list`];
+                break;
+            default:
+                this.backLink = null;
+        }
     }
 
     setTitle(url) {
@@ -43,5 +58,4 @@ export class NavComponent implements OnInit, OnDestroy {
             }
         }
     }
-
 }

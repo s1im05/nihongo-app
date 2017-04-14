@@ -11,6 +11,7 @@ import { AzComponent } from './az/az.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AzListComponent } from './az/az-list/az-list.component';
+import { AzLiteralComponent } from './az/az-literal/az-literal.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { AzListComponent } from './az/az-list/az-list.component';
         AzComponent,
         NavComponent,
         LayoutComponent,
-        AzListComponent
+        AzListComponent,
+        AzLiteralComponent
     ],
     imports: [
         BrowserModule,
