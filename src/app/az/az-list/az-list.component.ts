@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
+import {az, azType} from './az-list.const';
+
 
 @Component({
   selector: 'app-az-list',
@@ -9,15 +11,20 @@ import {Subscription} from 'rxjs/Rx';
 })
 export class AzListComponent implements OnInit, OnDestroy {
 
+    azList: Az = az;
     type: string;
     private routeSubs: Subscription;
 
-    constructor(public route: ActivatedRoute) {
+    constructor(public route: ActivatedRoute, public router: Router) {
     }
 
     ngOnInit() {
         this.routeSubs = this.route.params.subscribe(params => {
-            this.type = params.type;
+            if (azType.indexOf(params.type) !== -1) {
+                this.type = params.type;
+            } else {
+                this.router.navigate(['/']);
+            }
         });
     }
 

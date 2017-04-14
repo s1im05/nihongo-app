@@ -2,6 +2,20 @@
     <app-nav></app-nav>
 
     <ng-container body>
-        AZ-List
+        <div *ngFor="let item of azList" class="row">
+            <div class="col-xs-12">
+                <h5 class="az-title">{{item.row}}</h5>
+                <div class="az-row">
+                    <a *ngFor="let lit of item.literals" [routerLink]="['../literal/' + lit.rus]" class="az-cell">
+                        <div class="az-hint">
+                            {{lit.rus}}
+                        </div>
+                        <div class="az-literal">
+                            {{lit[type]}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </ng-container>
 </app-layout>

@@ -1,0 +1,33 @@
+.az-row {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2em;
+}
+
+.az-cell {
+    background: #fff;
+    cursor: pointer;
+    float: left;
+    width: 20%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.az-cell:hover {
+    opacity: .6;
+    text-decoration: none;
+}
+
+.az-hint {
+    background: #f0f0f0;
+}
+
+.az-literal {
+    color: #000;
+    font-size: 2.5em;
+}
+
+.az-title {
+    text-transform: capitalize;
+    font-weight: bold;
+}
