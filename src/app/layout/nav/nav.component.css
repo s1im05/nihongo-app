@@ -10,15 +10,26 @@
     padding-top: 4px;
     z-index: 100;
 }
+
 .nav-link, .nav-link:hover {
     text-decoration: none;
 }
+
 .nav-link:hover {
     opacity: .7;
 }
+
 .nav-link .fa-stack-2x {
     color: #fff;
 }
+
 .nav-link .fa-stack-1x {
     color: #65b8f6;
+}
+
+.nav-title {
+    color: #fff;
+    font-size: 1.25em;
+    margin-top: 7px;
+    margin-left: 10px;
 }
