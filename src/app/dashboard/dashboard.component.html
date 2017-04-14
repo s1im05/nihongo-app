@@ -1,14 +1,16 @@
-<div class="row">
-    <div class="col-xs-6">
-        <app-card>
-            <img src="assets/card_pink.png" image>
-            <span title>test1</span>
-        </app-card>
-    </div>
-    <div class="col-xs-6">
-        <app-card [link]="'/'">
-            <img src="assets/card_green.png" image>
-            <span title>test2</span>
-        </app-card>
+<div class="container-fluid body">
+    <div class="row">
+        <div class="col-xs-6">
+            <app-card [link]="'/az/hiragana'">
+                <img src="assets/card_pink.png" image>
+                <span title>Хирагана</span>
+            </app-card>
+        </div>
+        <div class="col-xs-6">
+            <app-card [link]="'/az/katakana'">
+                <img src="assets/card_green.png" image>
+                <span title>Катакана</span>
+            </app-card>
+        </div>
     </div>
 </div>

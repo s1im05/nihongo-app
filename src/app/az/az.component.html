@@ -1,0 +1,46 @@
+<app-layout *ngIf="type">
+    <ng-container body>
+        <div class="row my-progress">
+            <div class="col-xs-12">
+                <p>Прогресс обучения:</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" [style.width]="'50%'"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <app-card [link]="['list']">
+                    <img src="assets/card_pink.png" image>
+                    <span title>Список символов</span>
+                </app-card>
+            </div>
+            <div class="col-xs-6">
+                <app-card [link]="'/'">
+                    <img src="assets/card_green.png" image>
+                    <span title>Тренировка</span>
+                </app-card>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <app-card [link]="'/'">
+                    <img src="assets/card_pink.png" image>
+                    <span title>Правила произношения</span>
+                </app-card>
+            </div>
+            <div class="col-xs-6">
+                <app-card [link]="'/'">
+                    <img src="assets/card_green.png" image>
+                    <span title>Историческая справка</span>
+                </app-card>
+            </div>
+        </div>
+    </ng-container>
+</app-layout>
+
+
+
+
