@@ -1,6 +1,7 @@
 export const azType = ['hiragana', 'katakana'];
 export const az: Az = [
     {
+        id: 1,
         row: 'гласные',
         literals: [
             {hiragana: 'あ', katakana: 'ア', rus: 'а'},
@@ -11,6 +12,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 2,
         row: 'к-',
         literals: [
             {hiragana: 'か', katakana: 'カ', rus: 'ка'},
@@ -21,6 +23,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 3,
         row: 'с-',
         literals: [
             {hiragana: 'さ', katakana: 'サ', rus: 'са'},
@@ -31,6 +34,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 4,
         row: 'т-',
         literals: [
             {hiragana: 'た', katakana: 'タ', rus: 'та'},
@@ -41,6 +45,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 5,
         row: 'н-',
         literals: [
             {hiragana: 'な', katakana: 'ナ', rus: 'на'},
@@ -51,6 +56,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 6,
         row: 'х-',
         literals: [
             {hiragana: 'は', katakana: 'ハ', rus: 'ха'},
@@ -61,6 +67,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 7,
         row: 'м-',
         literals: [
             {hiragana: 'ま', katakana: 'マ', rus: 'ма'},
@@ -71,6 +78,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 8,
         row: 'й-',
         literals: [
             {hiragana: 'や', katakana: 'ヤ', rus: 'я'},
@@ -79,6 +87,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 9,
         row: 'р-',
         literals: [
             {hiragana: 'ら', katakana: 'ラ', rus: 'ра'},
@@ -89,6 +98,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 10,
         row: 'в-',
         literals: [
             {hiragana: 'わ', katakana: 'ワ', rus: 'ва'},
@@ -96,6 +106,7 @@ export const az: Az = [
         ]
     },
     {
+        id: 11,
         row: 'н',
         literals: [
             {hiragana: 'ん', katakana: 'ン', rus: 'н'},

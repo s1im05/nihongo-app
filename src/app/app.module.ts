@@ -14,6 +14,7 @@ import { AzListComponent } from './az/az-list/az-list.component';
 import { AzLiteralComponent } from './az/az-literal/az-literal.component';
 import { AzTrainingListComponent } from './az/training/az-training-list/az-training-list.component';
 import { AzProgressComponent } from './az/az-progress/az-progress.component';
+import { AzTrainingComponent } from './az/training/az-training/az-training.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { AzProgressComponent } from './az/az-progress/az-progress.component';
         AzListComponent,
         AzLiteralComponent,
         AzTrainingListComponent,
-        AzProgressComponent
+        AzProgressComponent,
+        AzTrainingComponent
     ],
     imports: [
         BrowserModule,

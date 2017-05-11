@@ -1,6 +1,10 @@
 <app-layout>
     <ng-container body>
         <app-az-progress></app-az-progress>
-        12345
+        <div *ngIf="trainingList" class="list-group">
+            <a [routerLink]="[training.id]" class="list-group-item" *ngFor="let training of trainingList">
+                {{training.title}}
+            </a>
+        </div>
     </ng-container>
 </app-layout>
