@@ -12,6 +12,8 @@ import { NavComponent } from './layout/nav/nav.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AzListComponent } from './az/az-list/az-list.component';
 import { AzLiteralComponent } from './az/az-literal/az-literal.component';
+import { AzTrainingListComponent } from './az/training/az-training-list/az-training-list.component';
+import { AzProgressComponent } from './az/az-progress/az-progress.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { AzLiteralComponent } from './az/az-literal/az-literal.component';
         NavComponent,
         LayoutComponent,
         AzListComponent,
-        AzLiteralComponent
+        AzLiteralComponent,
+        AzTrainingListComponent,
+        AzProgressComponent
     ],
     imports: [
         BrowserModule,

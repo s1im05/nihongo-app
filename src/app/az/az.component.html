@@ -1,13 +1,6 @@
 <app-layout *ngIf="type">
     <ng-container body>
-        <div class="row my-progress">
-            <div class="col-xs-12">
-                <p>Прогресс обучения:</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped" [style.width]="'50%'"></div>
-                </div>
-            </div>
-        </div>
+        <app-az-progress></app-az-progress>
 
         <div class="row">
             <div class="col-xs-6">
@@ -17,7 +10,7 @@
                 </app-card>
             </div>
             <div class="col-xs-6">
-                <app-card [link]="'/'">
+                <app-card [link]="['training']">
                     <img src="assets/card_green.png" image>
                     <span title>Тренировка</span>
                 </app-card>

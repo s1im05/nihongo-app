@@ -30,12 +30,11 @@ export class NavComponent implements OnInit, OnDestroy {
     setBackLink(componentName: string, url: UrlSegment[]) {
         switch (componentName) {
             case 'AzListComponent':
+            case 'AzTrainingListComponent':
                 this.backLink = ['..'];
                 break;
             case 'AzLiteralComponent':
-                const type = url[1].path;
-
-                this.backLink = [`/az/${type}/list`];
+                this.backLink = [`/az/${url[1]['path']}/list`];
                 break;
             default:
                 this.backLink = null;
