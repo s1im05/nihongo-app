@@ -25,4 +25,6 @@ interface AzTraining {
     count: number;
     size: number;
     title: string;
+    completedCount: number;
+    completedLevel: number;
 }

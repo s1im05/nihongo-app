@@ -2,8 +2,16 @@
     <ng-container body>
         <app-az-progress></app-az-progress>
         <div *ngIf="trainingList" class="list-group">
-            <a [routerLink]="[training.id]" class="list-group-item text-capitalize" *ngFor="let training of trainingList">
-                Символы: <strong>{{training.title}}</strong>
+            <a [routerLink]="[training.id]" class="list-group-item" *ngFor="let training of trainingList">
+                <strong class="text-capitalize">{{training.title}}</strong>
+                <span class="pull-right">
+                    {{training.completedCount}} из {{training.count}}
+                    <i class="fa fa-circle" [ngClass]="{
+                        'danger': training.completedLevel === 0,
+                        'warning': training.completedLevel === 1,
+                        'success': training.completedLevel === 2
+                    }"></i>
+                </span>
             </a>
         </div>
     </ng-container>
