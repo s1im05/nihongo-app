@@ -6,13 +6,19 @@
     border-bottom: 1px solid #ddd;
 }
 .answer-btn {
-    font-size: 4em;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    padding: .25em .5em;
     background: #fff;
     margin-bottom: 20px;
+}
+.col-xs-6 .answer-btn {
+    padding: .25em .5em;
+    font-size: 4.5em;
+}
+.col-xs-4 .answer-btn {
+    padding: .2em .4em;
+    font-size: 3em;
 }
 .success {
     color: #000;
