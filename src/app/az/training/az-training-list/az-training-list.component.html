@@ -5,11 +5,11 @@
             <a [routerLink]="[training.id]" class="list-group-item" *ngFor="let training of trainingList">
                 <strong class="text-capitalize">{{training.title}}</strong>
                 <span class="pull-right">
-                    {{training.completedCount}} из {{training.count}}
+                    {{training.completedCount(azType)}} из {{training.count}}
                     <i class="fa fa-circle" [ngClass]="{
-                        'danger': training.completedLevel === 0,
-                        'warning': training.completedLevel === 1,
-                        'success': training.completedLevel === 2
+                        'danger': training.completedLevel(azType) === 0,
+                        'warning': training.completedLevel(azType) === 1,
+                        'success': training.completedLevel(azType) === 2
                     }"></i>
                 </span>
             </a>

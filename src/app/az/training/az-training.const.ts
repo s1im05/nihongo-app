@@ -1,5 +1,7 @@
 import {az} from '../az-list/az-list.const';
 
+export const LS_TRAINING_PREFIX = 'az_t_';
+
 class CAzTraining implements AzTraining {
 
     public constructor(public id: number, public az: number[], public count: number, public size: number) {
@@ -19,12 +21,12 @@ class CAzTraining implements AzTraining {
         return sl.join(', ') || 'Экзамен';
     }
 
-    get completedCount(): number {
-        return +window.localStorage.getItem('az_t_' + this.id) || 0;
+    public completedCount(type: string): number {
+        return +window.localStorage.getItem(LS_TRAINING_PREFIX + type + '_' + this.id) || 0;
     }
 
-    get completedLevel(): number {
-        const prcnt = this.completedCount / this.count;
+    public completedLevel(type: string): number {
+        const prcnt = this.completedCount(type) / this.count;
 
         if (prcnt < 0.5) {
             return 0;
@@ -33,6 +35,10 @@ class CAzTraining implements AzTraining {
         } else {
             return 2;
         }
+    }
+
+    public clearProgress(type: string): void {
+        window.localStorage.removeItem(LS_TRAINING_PREFIX + type + '_' + this.id);
     }
 }
 
