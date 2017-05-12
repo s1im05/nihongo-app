@@ -15,15 +15,19 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
     azType: string;
     training: AzTraining;
     step = 0;
+    azAll: Array<AzLiteral> = [];
     totalCount = 0;
     correctAnswer = 0;
-    trainList: Array<AzLiteral>;
+    currentLiteral: AzLiteral;
+    answerSamples: Array<Array<AzLiteral>>;
+    blockAnswer = false;
+    trainList: Array<AzLiteral> = [];
     private routeSubs: Subscription;
 
     constructor(public route: ActivatedRoute, public router: Router) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.routeSubs = this.route.params.subscribe(params => {
             this.azType = params.type;
             this.training = AZ_TRAINING_LIST.find(f => {
@@ -33,39 +37,63 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/']);
             }
             this.training.clearProgress(this.azType);
-            this.trainList = [];
 
-            if (this.training.az.length) {
-                this.training.az.forEach(id => {
-                    az.find(f => {
-                        return f.id === id;
-                    }).literals.forEach(lit => {
-                        for (let i = 0; i < this.training.count; i++) {
-                            this.trainList.push(lit);
-                        }
-                    });
+            az.forEach(list => {
+                list.literals.forEach(lit => {
+                    this.azAll.push(lit);
                 });
-            } else {
-                az.forEach(list => {
-                    list.literals.forEach(lit => {
-                        for (let i = 0; i < this.training.count; i++) {
-                            this.trainList.push(lit);
-                        }
-                    });
-                });
-            }
+            });
 
+            this.trainList = this.training.getTrainingList();
             this.totalCount = this.trainList.length;
             this.trainList.sort(RANDOM_SORT);
+
+            this.newStep();
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.routeSubs.unsubscribe();
     }
 
-    newStep() {
+    newStep(): void {
+        this.answerSamples = [];
+        this.currentLiteral = this.trainList.pop();
+
+        const count = Math.pow(this.training.size, 2),
+            list = [this.currentLiteral, ...this.azAll.filter(f => {
+                return f[this.azType] !== this.currentLiteral[this.azType];
+            }).sort(RANDOM_SORT).slice(0, count - 1)].sort(RANDOM_SORT);
+
+        for (let i = 0; i < this.training.size; i++) {
+            this.answerSamples.push(list.splice(0, this.training.size));
+        }
+    }
+
+    answer(e: any, symbol: string): void {
+        if (this.blockAnswer) {
+            return;
+        }
+
+        this.blockAnswer = true;
+        if (this.currentLiteral[this.azType] === symbol) {
+            this.correctAnswer++;
+            e.target.classList.add('success');
+        } else {
+            e.target.classList.add('danger');
+        }
+
+        this.training.setCompletedCount(this.azType, this.correctAnswer);
         this.step++;
+
+        window.setTimeout(() => {
+            if (this.step < this.totalCount) {
+                this.blockAnswer = false;
+                this.newStep();
+            } else {
+                this.router.navigate(['az', this.azType, 'training']);
+            }
+        }, 500);
     }
 
     get successProgress(): number {
@@ -73,6 +101,6 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
     }
 
     get dangerProgress(): number {
-        return Math.round((this.step - this.correctAnswer) / this.totalCount * 100);
+        return Math.round(((this.step) - this.correctAnswer) / this.totalCount * 100);
     }
 }

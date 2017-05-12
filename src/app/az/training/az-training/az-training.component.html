@@ -12,5 +12,13 @@
                 </div>
             </div>
         </div>
+        <h2 class="text-capitalize">{{currentLiteral.rus}}</h2>
+        <div class="row" *ngFor="let row of answerSamples">
+            <div class="text-center" [ngClass]="{
+                'col-xs-6': training.size === 2,
+                'col-xs-4': training.size === 3}" *ngFor="let item of row">
+                <a class="answer-btn" (click)="answer($event, item[azType])">{{item[azType]}}</a>
+            </div>
+        </div>
     </ng-container>
 </app-layout>

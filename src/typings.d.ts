@@ -25,7 +25,10 @@ interface AzTraining {
     count: number;
     size: number;
     title: string;
-    completedCount(type: string): number;
-    completedLevel(type: string): number;
+    getCompletedCount(type: string): number;
+    setCompletedCount(type: string, count: number): void;
+    getCompletedLevel(type: string): number;
     clearProgress(type: string): void;
+    getStepCount(): number;
+    getTrainingList(): Array<AzLiteral>;
 }

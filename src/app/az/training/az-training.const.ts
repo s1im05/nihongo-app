@@ -21,12 +21,16 @@ class CAzTraining implements AzTraining {
         return sl.join(', ') || 'Экзамен';
     }
 
-    public completedCount(type: string): number {
+    public getCompletedCount(type: string): number {
         return +window.localStorage.getItem(LS_TRAINING_PREFIX + type + '_' + this.id) || 0;
     }
 
-    public completedLevel(type: string): number {
-        const prcnt = this.completedCount(type) / this.count;
+    public setCompletedCount(type: string, count: number): void {
+        window.localStorage.setItem(LS_TRAINING_PREFIX + type + '_' + this.id, count.toString());
+    }
+
+    public getCompletedLevel(type: string): number {
+        const prcnt = this.getCompletedCount(type) / this.getStepCount();
 
         if (prcnt < 0.5) {
             return 0;
@@ -40,9 +44,38 @@ class CAzTraining implements AzTraining {
     public clearProgress(type: string): void {
         window.localStorage.removeItem(LS_TRAINING_PREFIX + type + '_' + this.id);
     }
+
+    public getStepCount(): number {
+        return this.getTrainingList().length;
+    }
+
+    public getTrainingList(): Array<AzLiteral> {
+        const trainList = [];
+        if (this.az.length) {
+            this.az.forEach(id => {
+                az.find(f => {
+                    return f.id === id;
+                }).literals.forEach(lit => {
+                    for (let i = 0; i < this.count; i++) {
+                        trainList.push(lit);
+                    }
+                });
+            });
+        } else {
+            az.forEach(list => {
+                list.literals.forEach(lit => {
+                    for (let i = 0; i < this.count; i++) {
+                        trainList.push(lit);
+                    }
+                });
+            });
+        }
+        return trainList;
+    }
 }
 
 export const AZ_TRAINING_LIST: AzTrainingList = [
+    new CAzTraining(9, [1], 1, 2),
     new CAzTraining(1, [1, 2], 5, 2),
     new CAzTraining(2, [3, 4], 5, 2),
     new CAzTraining(3, [5, 6], 5, 2),
@@ -55,4 +88,4 @@ export const AZ_TRAINING_LIST: AzTrainingList = [
 
 export const RANDOM_SORT = function(a: any, b: any) {
     return Math.random() > 0.5 ? 1 : -1;
-}
+};
