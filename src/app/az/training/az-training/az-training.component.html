@@ -1,5 +1,16 @@
 <app-layout>
     <ng-container body>
-        <p>{{training.title}}</p>
+        <div class="row my-progress">
+            <div class="col-xs-12">
+                <p>
+                    {{training.title}}
+                    <span class="pull-right">{{correctAnswer}} из {{totalCount}}</span>
+                </p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-success" [style.width.%]="successProgress"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-danger" [style.width.%]="dangerProgress"></div>
+                </div>
+            </div>
+        </div>
     </ng-container>
 </app-layout>

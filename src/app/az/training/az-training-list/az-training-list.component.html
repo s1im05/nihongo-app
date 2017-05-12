@@ -4,14 +4,11 @@
         <div *ngIf="trainingList" class="list-group">
             <a [routerLink]="[training.id]" class="list-group-item" *ngFor="let training of trainingList">
                 <strong class="text-capitalize">{{training.title}}</strong>
-                <span class="pull-right">
-                    {{training.completedCount(azType)}} из {{training.count}}
-                    <i class="fa fa-circle" [ngClass]="{
-                        'danger': training.completedLevel(azType) === 0,
-                        'warning': training.completedLevel(azType) === 1,
-                        'success': training.completedLevel(azType) === 2
-                    }"></i>
-                </span>
+                <i class="fa fa-circle pull-right" [ngClass]="{
+                    'danger': training.completedLevel(azType) === 0,
+                    'warning': training.completedLevel(azType) === 1,
+                    'success': training.completedLevel(azType) === 2
+                }"></i>
             </a>
         </div>
     </ng-container>
