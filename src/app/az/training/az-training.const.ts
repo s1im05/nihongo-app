@@ -4,6 +4,8 @@ export const LS_TRAINING_PREFIX = 'az_t_';
 
 class CAzTraining implements AzTraining {
 
+    private _stepCount: number;
+
     public constructor(public id: number, public az: number[], public count: number, public size: number) {
     }
 
@@ -46,7 +48,10 @@ class CAzTraining implements AzTraining {
     }
 
     public getStepCount(): number {
-        return this.getTrainingList().length;
+        if (!this._stepCount) {
+            this._stepCount = this.getTrainingList().length;
+        }
+        return this._stepCount;
     }
 
     public getTrainingList(): Array<AzLiteral> {
@@ -75,15 +80,14 @@ class CAzTraining implements AzTraining {
 }
 
 export const AZ_TRAINING_LIST: AzTrainingList = [
-    new CAzTraining(9, [1], 1, 2),
-    new CAzTraining(1, [1, 2], 5, 2),
-    new CAzTraining(2, [3, 4], 5, 2),
-    new CAzTraining(3, [5, 6], 5, 2),
-    new CAzTraining(4, [7, 8], 5, 2),
-    new CAzTraining(5, [9, 10, 11], 5, 2),
-    new CAzTraining(6, [1, 2, 3, 4, 5], 4, 3),
-    new CAzTraining(7, [6, 7, 8, 9, 10, 11], 4, 3),
-    new CAzTraining(8, [], 3, 3),
+    new CAzTraining(1, [1, 2], 4, 2),
+    new CAzTraining(2, [3, 4], 4, 2),
+    new CAzTraining(3, [5, 6], 4, 2),
+    new CAzTraining(4, [7, 8], 4, 2),
+    new CAzTraining(5, [9, 10, 11], 4, 2),
+    new CAzTraining(6, [1, 2, 3, 4, 5], 3, 3),
+    new CAzTraining(7, [6, 7, 8, 9, 10, 11], 3, 3),
+    new CAzTraining(8, [], 2, 3),
 ];
 
 export const RANDOM_SORT = function(a: any, b: any) {

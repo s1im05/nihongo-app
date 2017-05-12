@@ -22,3 +22,30 @@
         </div>
     </ng-container>
 </app-layout>
+
+<div class="overlay" *ngIf="completedLevel !== null">
+    <div class="message" *ngIf="completedLevel === 2">
+        <h1 class="trophy"><i class="fa fa-trophy"></i></h1>
+        <h2>Поздравляем!</h2>
+        <p>Тренировка успешно пройдена! Так держать!</p>
+        <p><a class="btn btn-default" [routerLink]="['..']">Список тренировок</a></p>
+    </div>
+    <div class="message" *ngIf="completedLevel === 1">
+        <h1 class="goodgame"><i class="fa fa-thumbs-o-up"></i></h1>
+        <h2>Неплохо!</h2>
+        <p>Почти все получилось! Но можно еще лучше!</p>
+        <p>
+            <a class="btn btn-default" (click)="startAgain()">Ещё раз</a>
+            <a class="btn btn-default" [routerLink]="['..']">Список тренировок</a>
+        </p>
+    </div>
+    <div class="message" *ngIf="completedLevel === 0">
+        <h1 class="frown"><i class="fa fa-frown-o"></i></h1>
+        <h2>Ты можешь лучше!</h2>
+        <p>Не самая удачная попытка. Стоит еще немного подготовиться!</p>
+        <p>
+            <a class="btn btn-default" (click)="startAgain()">Ещё раз</a>
+            <a class="btn btn-default" [routerLink]="['/', 'az', azType, 'list']">Список символов</a>
+        </p>
+    </div>
+</div>

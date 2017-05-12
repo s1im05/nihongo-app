@@ -22,3 +22,30 @@
     color: #000;
     background: #fcc;
 }
+.overlay {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .1);
+}
+.message {
+    margin: 15px;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,.2);
+}
+.trophy > .fa {
+    font-size: 2em;
+    color: #ffc135;
+}
+.goodgame > .fa {
+    font-size: 2em;
+    color: #337ab7;
+}
+.frown > .fa {
+    font-size: 2em;
+    color: #777;
+}

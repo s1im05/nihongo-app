@@ -18,6 +18,7 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
     azAll: Array<AzLiteral> = [];
     totalCount = 0;
     correctAnswer = 0;
+    completedLevel: number;
     currentLiteral: AzLiteral;
     answerSamples: Array<Array<AzLiteral>>;
     blockAnswer = false;
@@ -36,24 +37,32 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
             if (!this.training) {
                 this.router.navigate(['/']);
             }
-            this.training.clearProgress(this.azType);
 
-            az.forEach(list => {
-                list.literals.forEach(lit => {
-                    this.azAll.push(lit);
-                });
-            });
-
-            this.trainList = this.training.getTrainingList();
-            this.totalCount = this.trainList.length;
-            this.trainList.sort(RANDOM_SORT);
-
-            this.newStep();
+            this.initTraining();
         });
     }
 
     ngOnDestroy(): void {
         this.routeSubs.unsubscribe();
+    }
+
+    initTraining(): void {
+        this.step = 0;
+        this.completedLevel = null;
+        this.correctAnswer = 0;
+        this.training.clearProgress(this.azType);
+
+        az.forEach(list => {
+            list.literals.forEach(lit => {
+                this.azAll.push(lit);
+            });
+        });
+
+        this.trainList = this.training.getTrainingList();
+        this.totalCount = this.trainList.length;
+        this.trainList.sort(RANDOM_SORT);
+
+        this.newStep();
     }
 
     newStep(): void {
@@ -87,13 +96,15 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
         this.step++;
 
         window.setTimeout(() => {
+            this.blockAnswer = false;
             if (this.step < this.totalCount) {
-                this.blockAnswer = false;
                 this.newStep();
             } else {
-                this.router.navigate(['az', this.azType, 'training']);
+                this.completedLevel = this.training.getCompletedLevel(this.azType);
             }
         }, 500);
+
+        //this.completedLevel = 1;
     }
 
     get successProgress(): number {
@@ -102,5 +113,9 @@ export class AzTrainingComponent implements OnInit, OnDestroy {
 
     get dangerProgress(): number {
         return Math.round(((this.step) - this.correctAnswer) / this.totalCount * 100);
+    }
+
+    startAgain() {
+        this.initTraining();
     }
 }
